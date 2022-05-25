@@ -17,6 +17,7 @@
           action="#"
           :auto-upload="false"
           :show-file-list="false"
+          accept=".jpg,.png"
           @change="selectFile"
         >
           <template #trigger>
@@ -109,7 +110,7 @@
         <input type="file" class="upload_inp">
         <div class="upload_drag">
           <i class="icon"></i>
-          <span class="text">将文件拖到此处，或<a href="javascript:;" class="upload_submit">点击上传</a></span>
+          <span class="text">将文件拖到此处，或<a href="" class="upload_submit">点击上传</a></span>
         </div>
         <div class="upload_mark">正在上传中，请稍等...</div>
       </section>
@@ -134,12 +135,13 @@
 
 <script lang="ts">
 import { Ref, defineComponent, ref } from 'vue'
-import { ElButton, UploadRawFile, UploadFile } from 'element-plus'
-import instance from "../../request/instance";
+import { ElUpload, ElNotification, ElButton, UploadRawFile, UploadFile } from 'element-plus'
+import { Api } from "../../request";
 
 export default defineComponent({
   components: {
-    ElButton
+    ElButton,
+    ElUpload
   },
 
   setup() {
@@ -150,10 +152,22 @@ export default defineComponent({
       const formData = new FormData()
       formData.append('file', file)
       formData.append('filename', file.name)
-      instance.post('/api/upload_single', formData).then(res => {
+      Api.uploadSingle(formData).then((res) => {
+        console.log('上传成功!', res)
+        const result: any = res
         fileList.value = []
+        ElNotification({
+          type: 'success',
+          title: 'Success',
+          message: result.codeText
+        })
       }).catch(err => {
         console.error(err)
+        ElNotification({
+          title: 'Error',
+          message: err,
+          type: 'error',
+        })
       })
     }
 

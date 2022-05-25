@@ -1,44 +1,16 @@
 import instance from "./instance";
+import { AxiosPromise } from "axios";
 
-const fm = new FormData()
-fm.append('file', '')
-fm.append('filename', '')
-instance.post('/upload_single', fm, {
-  headers: {
-    'Content-Type': 'multipart/form-data'
-  }
-})
-
-export const uploadSigle = () => {
-  return new Promise((resolve, reject) => {
-    const fm = new FormData()
-    fm.append('file', '')
-    fm.append('filename', '')
-    instance.post('/upload_single', fm, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }).then(res => {
-      resolve(res)
-    }).catch(err => {
-      reject(err)
-    })
-  })
+interface UploadSingleRes {
+  code: number
+  codeText: string
+  originalFilename: string
+  servicePath: string
 }
 
-// xxx=xxxx&xx=xx
-instance.post('/upload_single_base64', {
-  file: '',
-  fileName: ''
-}, {
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }
-})
-
-export const uploadSingle = (formData: FormData) => {
+export const uploadSingle = (formData: FormData): AxiosPromise<UploadSingleRes> => {
   return instance({
-    url: '',
+    url: '/api/upload_single',
     method: 'post',
     data: formData,
     headers: {
