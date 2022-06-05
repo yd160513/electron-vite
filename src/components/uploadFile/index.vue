@@ -136,7 +136,7 @@
 <script lang="ts">
 import { Ref, defineComponent, ref } from 'vue'
 import { ElUpload, ElNotification, ElButton, UploadRawFile, UploadFile } from 'element-plus'
-import { Api } from "../../request";
+import { Api } from "../../api";
 
 export default defineComponent({
   components: {
