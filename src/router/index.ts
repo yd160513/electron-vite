@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import blobApplication from './../components/blobApplication/index.vue'
 import uploadFile from './../components/uploadFile/index.vue'
 import bell from './../components/bell/index.vue'
+import count from './../components/count/index.vue'
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     name: 'bell',
     path: '/bell',
     component: bell,
+  },
+  {
+    name: 'count',
+    path: '/count',
+    component: count,
   }
 ]
 
