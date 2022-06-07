@@ -1,5 +1,5 @@
-// import { createRouter, createWebHashHistory } from 'vue-router'
-import { createRouter, createWebHashHistory } from "./grouter/index.js";
+import { createRouter, createWebHashHistory } from 'vue-router'
+// import { createRouter, createWebHashHistory } from "./grouter/index.js";
 
 import blobApplication from './../components/blobApplication/index.vue'
 import uploadFile from './../components/uploadFile/index.vue'
