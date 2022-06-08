@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineProps, defineEmits } from 'vue'
+import { computed } from 'vue'
 // import { useStore } from '../../store/gvuex'
 import { useStore } from 'vuex'
 
